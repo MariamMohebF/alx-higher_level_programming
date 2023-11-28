@@ -1,22 +1,36 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include "list.h"
-
 /*
- * cheek cycle — checks if list is cyclical
- * pointer tO list to check
- * Return: 1 eyeliaai, 0 othetwise
+ * File: 10-check_cycle.c
+ * Auth: Brennan D Baraban
  */
-int check cycle (ligtint t *list)
-{
-	listint_t *slow = list, *fast = list;
 
-	while (fast && fast->next)
-	{
-		slow = slow->list;
-		fast = fast->next->next;
-		if slow (slow == fast)
-			return(1);
-	}
-	return(0);
+#include <stdlib.h>
+#include "lists.h"
+
+/**
+ * check_cycle - Checks if a singly-linked list contains a cycle.
+ * @list: A singly-linked list.
+ *
+ * Return: If there is no cycle - 0.
+ *         If there is a cycle - 1.
+ */
+int check_cycle(listint_t *list)
+{
+listint_t *turtle, *hare;
+
+if (list == NULL || list->next == NULL)
+return (0);
+
+turtle = list->next;
+hare = list->next->next;
+
+while (turtle && hare && hare->next)
+{
+if (turtle == hare)
+return (1);
+
+turtle = turtle->next;
+hare = hare->next->next;
+}
+
+return (0);
 }
